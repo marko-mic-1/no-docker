@@ -1,4 +1,6 @@
-FROM alpine:3.15
-ADD . /app
-RUN cd /app; npm install --production
-CMD ["node", "/app/index.js"]
+FROM node:16
+WORKDIR /app
+COPY ["package.json", "./"]
+RUN npm install --production
+COPY . .
+CMD [ "node", "index.js" ]
